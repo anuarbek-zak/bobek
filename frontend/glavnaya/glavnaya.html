@@ -1,47 +1,117 @@
-<link rel="stylesheet" href="glavnaya.css">
 <div class="glavnaya">
-		<div class="sidebar">
-			<img class="ornament" src="../assets/img/ornament.png" alt="">
-			<div class="categories">
-				<div ui-sref-active='active-link' ng-click="vm.clickCategory(category)" class="category" ng-repeat="category in vm.categories">
-					<span   class="category-name" > <i class="dot">&bull;</i>	 {{category.name}}</span>
-					<i  ng-if="category.children.length>0" class="fa fa-chevron-circle-down"></i>
-					<div class="line"></div>
-					<div  class="subcategories">
-						<div class="subcategory"  ng-show="vm.selected==category._id" ng-repeat="subcategory in category.children">
-							<a ui-sref="showProducts({category_id:subcategory._id})"><i class="dot">&bull;</i> {{subcategory.name}}</a>
-						</div>
-					</div>
-				</div>	
+	<div class="section-1">
+		<div class="under-header">
+			<h1 class="title">Добро пожаловать в «{{vm.siteName}}»!</h1>
+			<p>
+				«{{vm.siteName}}» - это частный детский сад в городе Костанай. Красивый и уютный. Детский садик, в который детки идут с удовольствием. А родители уверены, что с их детьми все будет в порядке: ухожены, накормлены и творчески развиты. <b>Приходите, мы Вас ждем!</b>
 			</div>
 		</div>
+		<div class="section-2">
+			<h2 class="title">Почему именно «{{vm.siteName}}»?</h2>
+			<div class="section-container flex">
+				<div class="card">
+					<h3>01</h3>
+					<h4>Безоспасность</h4>
+					<ol>
+						<li>Отвественные воспитатели не оставят вашего ребенка без присмотра.</li>
+						<li>Дети гуляют на собственной огороженной территории.</li>
+						<li>Забрать ребенка из детского сада, кроме родителей, могут только лица, указанные в нотариальной доверенности.</li>
+						<li>В детский сад не допускается ребенок с первичными признаками заболевания.</li>
+					</ol>
+				</div>		
+				<div class="card">
+					<h3>02</h3>
+					<h4>Воспитание</h4>
+					<ol>
+						<li>Комплексная программа воспитания и развития дошкольников, рекомендованная и одобренная Министерством образования и науки РК
+						</li>
+						<li>Основное внимание уделяется постепенному личностному раскрытию ребенка и выявлению его талантов.</li>
+						<li>Квалифицированные воспитатели со стажем оказывают индувидуальный подход к каждому ребенку.</li>
+					</ol>
+				</div>		
+				<div class="card">
+					<h3>03</h3>
+					<h4>Воспитатели</h4>
+					<ol>
+						<li>Отвественные и высококфалицированные воспитатели любящие детей.
+						</li>
+						<li>Стаж каждого работника более 10 лет.</li>
+						<li>Многие дети называют наших воспитетелей вторыми "мамами"</li>
+					</ol>
+				</div>		
+				<div class="card">
+					<h3>04</h3>
+					<h4>Развлечения</h4>
+					<ol>
+						<li>В нашем садике можно весело провести любой праздник и отпраздновать незабываемый День Рождения вашего ребенка.</li>
+						<li>Проводим спектакли и концерты.</li>
+						<li>На каждом празднике присутсвуют аниматоры,которые сделают мероприятие интересным и развлекательным.</li>
+					</ol>
+				</div>		
+			</div>
+		</div>		
+		<div class="section-3">
+			<h2 class="title">Почему дети нас любят?</h2>
+			<div class="section-container flex">	
+				<div class="card">
+					<i class="fa fa-users"></i>
+					<h4>Друзья</h4>
+					<p>Много новых знакомств и друзей. Общение со сверстниками и социализация.</p>
+				</div>		
+				<div class="card">
+					<i class="fa fa-smile-o"></i>
+					<h4>Эмоции</h4>
+					<p>Каждый день в «{{vm.siteName}}е» наполнен интересными событиями,которые не заставят ребенка заскучать!</p>
+				</div>	
+				<div class="card">
+					<i class="fa fa-graduation-cap"></i>
+					<h4>Знания</h4>
+					<p>Программа обучения вкупе с квалифицированными воспитателями полностью подготовят вашего ребенка к начальной школе.</p>
+				</div>		
+				<div class="card">
+					<i class="fa fa-heart"></i>
+					<h4>Воспитатели</h4>
+					<p>Опытные и ответсвенные воспитатели, любящие детей, будут вторыми "мамами" для ваших чад. </p>
+				</div>		
+			</div>
+		</div>
+		<div class="section-4">
+			<h2 class="title">Галлерея</h2>
+			<div class="section-container flex">
+				<div class="image" set-background-img src="{{photo.path}}" ng-repeat="photo in vm.photos | limitTo:vm.photoLimit" >
+					<button ng-if="vm.isAdmin" ng-click="vm.removePhoto(photo._id,$index)" class="btn btn-danger">Удалить фотографию</button>
+				</div>
+			</div>
+			<button class="text-center btn" ng-hide="vm.photoLimit>=vm.photos.length" ng-click="vm.increaseLimit(1,12)">Показать еще</button>
+		</div>
+		<div class="section-5">
+			<h2 class="title">Наша Команда</h2>
+			<div class="section-container flex">	
+				<div ng-repeat="people in vm.portfolios | limitTo:vm.portfolioLimit" class="card">
+					<div set-background-img src="{{people.image}}" class="image"></div>
+					<div ng-if="vm.isAdmin" class="edit flex">
+						<i ui-sref="addPortfolio({id:people._id})" class="fa fa-pencil"></i>
+						<i ng-click="vm.removePortfolio(people,$index)" class="fa fa-trash"></i>
+					</div>
+					<h4>{{people.name}}</h4>
+					<p>{{people.description}}</p>
+				</div>		
+			</div>
+			<button class="text-center btn" ng-hide="vm.portfolioLimit>=vm.portfolios.length" ng-click="vm.increaseLimit(2,4)">Показать еще</button>
+		</div>
+		<div class="section-6">
+			<h2 class="title">Контакты</h2>
+			<div class="section-container flex">			
+				<div class="left image"></div>
+				<div class="right">
+					<button ng-if="vm.isAdmin" ui-sref="editContacts" class="btn btn-success">Изменить номер или адрес</button>
 
-	<div class="slider-cards">
-		<ui-carousel class="slider" slides="vm.slides" dots="true" slides-to-scroll="1"
-		autoplay="true"
-		arrow="false"
-		autoplay-speed="3000">
-		<carousel-item>
-			<img src="../assets/img/{{item}}" alt="">			
-		</carousel-item>
-	</ui-carousel>
-	<div class="cards">
-		<a ui-sref="card({which:'action'})" class="card">
-			<h3>акции</h3>
-			<i class="fa fa-percent"></i>	
-		</a>
-		<a ui-sref="card({which:'design'})" class="card">
-			<h3>дизайнерам</h3>
-			<i class="fa fa-umbrella"></i>	
-		</a>
-		<a ui-sref="articles" class="card">
-			<h3>статьи</h3>
-			<i class="fa fa-home"></i>	
-		</a>
-		<a ui-sref="card({which:'writeUs'})" class="card">
-			<h3>написать нам</h3>
-			<i class="fa fa-user"></i>	
-		</a>
+					<h4><i class="fa fa-phone"></i> Телефон</h4>
+					<p>Вы можете связаться с нами по следующему номеру: {{vm.contacts.phone}}</p>
+					<h4><i class="fa fa-home"></i> Адрес</h4>
+					<p>Мы расположены по адресу : {{vm.contacts.address}}</p>
+					<h3 class="title">Будем рады вам и вашим детям!</h3>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-</div>

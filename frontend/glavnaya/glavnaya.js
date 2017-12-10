@@ -1,25 +1,63 @@
-angular.module('myApp').controller('glavnayaCtrl',function ($http,$state,$localStorage,authService) {
-    var vm = this;
-    vm.selected = "";
-    vm.slides = ['slider-1.jpg','slider-2.jpg','slider-3.jpg'];
+angular.module('myApp').controller('glavnayaCtrl',function ($http,$state,$localStorage) {
+  var vm = this;
+  vm.photos = [];
+  vm.photoLimit = 8;
+  vm.portfolioLimit = 4;
+  vm.portfolios = [];
+  vm.isAdmin = $localStorage.admin?true:false;
+  vm.isBobek = $localStorage.sitenumber=='1';
+  vm.siteName = vm.isBobek?'Бобек':'Бес уйрек'
 
-    $http.get("/api/category/parents",{ cache: true})
-        .success(function(response){
-            vm.categories = response;
-            console.log("CAT",vm.categories);
-        })
-        .error(function(err){
-            console.log(err);
-        }); 
+  vm.increaseLimit = function  (number,increase) {
+    if(number==1) vm.photoLimit+=increase;
+    if(number==2) vm.portfolioLimit+=increase;
+  }
 
-   vm.clickCategory = function(category){
-   	if(category.children.length>0){
-   		console.log(category.name);
-   		if(vm.selected!=category._id) vm.selected=category._id;
-   		else vm.selected="";
-   	}else{
-   		$state.go('showProducts',{category_id:category._id});
-   	}
-   }     
-    
+  vm.removePortfolio = function(people,i) {
+    var confirmed = confirm('Вы уверены что хотите удалить профиль пользователя '+people.name+"?");
+    if(confirmed){
+      vm.portfolios.splice(i,1)
+      $http.delete("/api/portfolio/"+people._id)
+      .success(function(response){
+      })
+      .error(function(err){
+      });
+    }
+  }
+
+  vm.removePhoto = function(id,i) {
+    var confirmed = confirm('Вы уверены что хотите удалить эту фотографию?');
+    if(confirmed){
+      vm.photos.splice(i,1)
+      $http.delete("/api/gallery/"+id)
+      .success(function(response){
+      })
+      .error(function(err){
+      });
+    }
+  }
+
+  $http.get("/api/gallery")
+  .success(function(response){
+    vm.photos = response;
+  })
+  .error(function(err){
+  }); 
+
+  $http.get("/api/portfolio")
+  .success(function(response){
+    console.log(response)
+    vm.portfolios = response;
+  })
+  .error(function(err){
+  });
+
+  $http.get("/api/contacts")
+  .success(function(response){
+    console.log('55',response)
+    vm.contacts = response;
+  })
+  .error(function(err){
+  }); 
+
 });

@@ -23,14 +23,9 @@
 	</div>
 	<ul ng-if="vm.admin" class="col-md-10 col-md-offset-1">
 		<h2>Панель администратора</h2>
-		<li><a ui-sref="createCategory({type:'category'})">Добавить категорию</a></li>
-		<li><a ui-sref="removeCategory({type:'change'})">Изменить категорию</a></li>
-		<li><a ui-sref="createCategory({type:'subcategory'})">Добавить подкатегорию</a></li>
-		<li><a ui-sref="createProduct">Добавить товар</a></li>
-		<li><a ui-sref="createArticle">Добавить статью</a></li>
-		<li><a ui-sref="removeCategory({type:'category'})">Удалить категорию</a></li>
-		<li><a ui-sref="updateFields">Изменяемые поля</a></li>
-		<li><a ui-sref="createAction">Акции</a></li>
+		<li><a ui-sref="addPhoto">Добавить фото в галлерею</a></li>
+		<li><a ui-sref="addPortfolio">Добавить портфолио сотрудника</a></li>
+		<li><a ui-sref="editContacts">Изменить адрес или телефон</a></li>
 		<li><a ui-sref="glavnaya">На главную</a></li>
 		<li><a ng-click="vm.logout()">Выйти</a></li>
 	</ul>

@@ -1,11 +1,8 @@
-angular.module('myApp').controller('adminPanelCtrl',function ($http,$state,$localStorage,authService,$location,$anchorScroll) {
+angular.module('myApp').controller('adminPanelCtrl',function ($http,$state,$localStorage,authService,$location) {
     var vm = this;
     vm.admin=$localStorage.admin?true:false;
      vm.name='';
   	vm.password='';
-
-	$location.hash('anchor');
-	$anchorScroll();
 
   	vm.logout = function(){
   		authService.logout();
@@ -15,12 +12,12 @@ angular.module('myApp').controller('adminPanelCtrl',function ($http,$state,$loca
   	}
 
 	  vm.login = function () {
-	    if(vm.name!='Ая'||vm.password!='amabilisdu'){
+	    if(vm.name!='Бобек'||vm.password!='БобекСДУ'){
 	    	vm.errorText='Не верный логин или пароль';
 	     }else{
 	     	 vm.errorText='';
 					vm.admin=true;
-					$localStorage.admin={name:'AMABILIS'};
+					$localStorage.admin={name:'BOBEK'};
 				}
 	  };
 });

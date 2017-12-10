@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html lang="ru" class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="ru" data-livestyle-extension="available">
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8"/>
+  <title>Бобек</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <!--------------------- CSS ------------- -->
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="commonCss/index.css">
+  <link rel="stylesheet" href="commonCss/font-awesome.css">
+  <link rel="stylesheet" href="glavnaya/glavnaya.css">
+  <link rel="stylesheet" href="adminPanel/adminPanel.css">
+  <link rel="stylesheet" href="addPhoto/addPhoto.css">
+  <link rel="stylesheet" href="addPortfolio/addPortfolio.css">
+  <link rel="stylesheet" href="editContacts/editContacts.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
+</head>
+
+<body ng-app="myApp"  ng-cloak>
+  <header class="flex" ng-controller="headerCtrl as vm">
+    <span class="title">Бобек</span>
+    <div class="nav flex">
+    <!--  <ul>
+       <li class="active"><a href="">О нас</a></li>
+       <li><a href="">Контакты</a></li>
+       <li><a href="">Галлерея</a></li>
+       <li><a href="">Персонал</a></li>
+     </ul> -->
+   </div>
+ </header>
+
+ <div class="main_view" ui-view>
+ </div>
+
+ <footer ng-controller="footerCtrl as vm" class="flex" >
+    <p>© 2017 bobek.kz</p>
+  <img src="assets/img/logo.jpg" alt="" class="logo">
+  <a ui-sref="adminPanel">Панель администратора</a>
+</footer>
+
+<!--------- JS----------->
+<!---------DEPENDENCIES -->
+<script>
+  localStorage.setItem('ngStorage-sitenumber', '1');
+</script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/ngstorage/ngStorage.js"></script>
+<script src="../bower_components/angular-strap/dist/angular-strap.min.js"></script>
+<script src="../bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="../bower_components/ng-file-upload/ng-file-upload-all.js"></script>
+<script src="../bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<!--- --------------- MAIN SCRIPTS -->
+<script src="commonJS/index.module.js"></script>
+<script src="commonJS/index.route.js"></script>
+<script src="commonJS/index.js"></script>
+<!-- ----------------COMPONENTS  -->
+<script src="components/authService.js"></script>
+<script src="components/setBackgroundImg.js"></script>
+<!----------------- -CONTROLLERS -->
+<script src="glavnaya/glavnaya.js"></script>
+<script src="adminPanel/adminPanel.js"></script>
+<script src="addPhoto/addPhoto.js"></script>
+<script src="addPortfolio/addPortfolio.js"></script>
+<script src="editContacts/editContacts.js"></script>
+
+</body>
+</html>

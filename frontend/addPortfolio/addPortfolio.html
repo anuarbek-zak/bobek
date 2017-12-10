@@ -1,0 +1,20 @@
+<div class="addPhoto">
+	<div class="container">
+		<br><br>
+		<button ui-sref="adminPanel" class="btn btn-info" >Назад</button>
+		<br><br><br>
+		<div class="form-group">
+		<label for="name">ФИО сотрудника:</label>
+			<input ng-model="vm.portfolio.name" type="text" class="form-control" id="name">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Описание сотртудника</label>
+			<input ng-model="vm.portfolio.description" type="text" class="form-control" id="pwd">
+		</div>
+		<button ngf-select ng-model="vm.file" ngf-pattern="'image/*'" class="btn btn-primary">+ Выбрать фото</button>
+				<br><br><br>
+		<button ng-click="vm.save()" class="btn btn-success">Сохранить</button>
+		<br>
+		<p>{{vm.photoUploaded}}</p>
+	</div>
+</div>

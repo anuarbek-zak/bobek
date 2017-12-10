@@ -1,0 +1,12 @@
+<div class="addPhoto">
+	<div class="container">
+		<br><br>
+		<button ui-sref="adminPanel" class="btn btn-info" >Назад</button>
+		<br>
+		<br><br>
+		<button ngf-select ng-model="vm.file" ngf-pattern="'image/*'" class="btn btn-primary">+ Выбрать фото</button>
+		<button ng-click="vm.save()" class="btn btn-success">Сохранить</button>
+		<br>
+		<p>{{vm.photoUploaded}}</p>
+		</div>
+</div>

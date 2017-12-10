@@ -1,6 +1,7 @@
-	.adminPanel li:last-child{
-		margin-bottom: 150px;
-	}
+		.adminPanel ul{
+			/*margin-top: 50px;*/
+		margin-bottom: 50px;
+		}
 	
 	.adminPanel a{
 		display: block;
@@ -16,7 +17,7 @@
 	.adminPanel h2{
 		text-align: center;
 		font-size: 25px;
-		margin-bottom: 50px;
+		margin: 50px 0;
 	}
 
 	.adminPanel a:hover{

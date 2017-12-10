@@ -4,7 +4,6 @@ angular.module('myApp').controller('headerCtrl',function ($http,$stateParams,aut
 	$http.get("/api/contacts")
         .success(function(response){
         	vm.contacts = response[0];
-        		console.log(vm.contacts);
         })
         .error(function(err){
             console.log(err);
@@ -14,26 +13,22 @@ angular.module('myApp').controller('headerCtrl',function ($http,$stateParams,aut
 });
 
 
-
-
 angular.module('myApp').controller('footerCtrl',function ($http,$stateParams,$localStorage,authService,$state,$scope) {
 	var vm = this;
 	vm.isAdmin=false;
+    vm.currentYear = new Date().getFullYear();
 
 		$http.get("/api/contacts")
         .success(function(response){
         	vm.contacts = response[0];
-        		console.log('footer',vm.contacts);
-
         })
         .error(function(err){
             console.log(err);
         });
 
 	if($localStorage.admin!=undefined)	vm.isAdmin=true;
-	console.log(vm.isAdmin);
 	vm.logout = function(){
 		$localStorage.admin = undefined;
-		$state.got('glavnaya');
+		$state.go('glavnaya');
 	}
 });
